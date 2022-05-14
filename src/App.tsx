@@ -3,11 +3,11 @@ import Airtable from 'airtable';
 import { useSelector, useDispatch } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
 import { Login } from './features/Login/Login';
-import { data, loadingState, loginState, setData, setLoading, setLogin, setName, inputValue } from './AppSlice';
+import { data, loadingState, loginState, setData, setLoading, setLogin, setName, inputValue, modalState, setModal } from './AppSlice';
 import './App.css';
 import Classes from './features/Classes/Classes';
 // const apiKey = process.env.API_KEY
-const base = new Airtable({ apiKey: 'keyTrjlo9qTzY4wc9' }).base("app8ZbcPx7dkpOnP0");
+const base = new Airtable({ apiKey: 'replace with own key' }).base("app8ZbcPx7dkpOnP0");
 
 function App() {
   const dispatch = useDispatch();
@@ -15,6 +15,7 @@ function App() {
   const studentName = useSelector(inputValue);
   const loading = useSelector(loadingState);
   const login = useSelector(loginState);
+  const showModal = useSelector(modalState);
 
   const fetchData = async () => {
     dispatch(setLoading(true));
@@ -40,6 +41,7 @@ function App() {
           if (records.length === 0) {
             dispatch(setName(""))
             dispatch(setLoading(false))
+            dispatch(setModal(true))
             toast(`${studentName} has yet to sign up for classes. Login again :)`)
           }
           else {
@@ -86,6 +88,7 @@ function App() {
     dispatch(setName(''));
     dispatch(setLogin(false));
     dispatch(setData([]));
+    if (showModal) setModal(false)
   }
 
   return (
@@ -116,7 +119,6 @@ function App() {
           }
         </div>
       )
-
       }
 
     </div>

@@ -13,7 +13,8 @@ export const Login: React.FC<Props> = ({ callback }) => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value.toLowerCase();
-    dispatch(setName(val[0].toUpperCase() + val.substring(1)))
+    const finalval = val.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+    dispatch(setName(finalval));
   }
 
   const handleSubmit = (e: FormEvent<HTMLButtonElement>) => {
@@ -31,7 +32,6 @@ export const Login: React.FC<Props> = ({ callback }) => {
         <label className="form-label">Log In</label>
         <input
           type="text"
-          value={studentName}
           placeholder="Student Name"
           onChange={handleChange}
           className="form-control"
