@@ -89,7 +89,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="">
       <ToastContainer autoClose={3000} />
       {loading ? (
         <div className="spinner-border" role="status">
@@ -97,13 +97,13 @@ function App() {
         </div>
       ) : (
         <div>
-          {login === true ? (
+          {login ? (
             <div>
-              <nav className="nav d-flex justify-content-end">
+              <nav className="nav d-flex justify-content-end p-2">
                 <button type="button" className="btn btn-primary" onClick={logout}>Logout</button>
               </nav>
               <div className="row">
-                <div className="col-sm-6">
+                <div className="d-flex">
                   {response.map(res =>
                     <Classes classname={res.Name} students={res.Students} />
                   )}

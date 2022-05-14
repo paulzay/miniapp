@@ -9,16 +9,19 @@ function Classes(props: Props) {
   const { classname, students } = props
 
   return (
-    <div className="card w-10 m-2">
-      <h3 className="">Class Name</h3>
-      <p className="">{classname}</p>
-      <h3 className="">Students</h3>
-      {
-        students.map((student, idx) =>
-          <p key={idx} className="">{student}</p>
-        )
-      }
-
+    <div className="card m-2 w-50">
+      <div className="card-body">
+        <h3 className="card-title">Class Name</h3>
+        <p className="card-text">{classname}</p>
+        <h3 className="card-title">Students</h3>
+        <ol>
+          {
+            students.map((student, idx) =>
+              <li key={idx} className="card-text">{student}</li>
+            )
+          }
+        </ol>
+      </div>
     </div>
   );
 }

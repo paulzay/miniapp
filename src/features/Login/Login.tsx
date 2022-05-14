@@ -12,9 +12,8 @@ export const Login: React.FC<Props> = ({ callback }) => {
   const studentName = useSelector(inputValue)
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value;
-
-    dispatch(setName(val))
+    const val = e.target.value.toLowerCase();
+    dispatch(setName(val[0].toUpperCase() + val.substring(1)))
   }
 
   const handleSubmit = (e: FormEvent<HTMLButtonElement>) => {
